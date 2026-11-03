@@ -1,0 +1,4 @@
+.dialog{left:30px;right:30px;bottom:28px;min-height:155px;padding:19px 27px 19px 180px;background:linear-gradient(115deg,#243b52f8,#13273ff5)}
+.dialog .avatar.character-portrait{left:18px;top:-24px;width:140px;height:140px;border-radius:3px;border:2px solid #c7ae77;box-shadow:0 0 0 4px #15283c,0 10px 20px #06172966;background-repeat:no-repeat;image-rendering:pixelated;font-size:20px;color:#f5dfb5}
+.dialog .speaker{background:#536a79!important;color:#fff0cf;border:1px solid #ae9668;border-radius:2px;font-size:14px;padding:3px 14px;margin-bottom:10px}
+.dialog .text{font-size:18px;line-height:1.75;font-weight:400;color:#f2e5ca}.dialog .next{color:#eed49a}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>光之城 · 城市探索物语</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/refined.css" />
+<link rel="stylesheet" href="css/pixel.css" />
+<link rel="stylesheet" href="css/characters.css" />
+</head>
+<body>
+<div id="wrap">
+  <div id="stage">
+    <canvas id="game" width="960" height="600"></canvas>
+
+    <div id="ui">
+
+      <!-- ============ 标题画面 ============ -->
+      <section id="scr-title" class="screen">
+        <div class="title-sky">
+          <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+        </div>
+        <div class="title-box">
+          <h1>光<span>之</span>城</h1>
+          <p class="sub">城 市 探 索 物 语 &nbsp;·&nbsp; A Tiny City Adventure</p>
+          <div class="title-btns">
+            <button class="btn big" id="btnStart">开始冒险</button>
+            <button class="btn ghost" id="btnGallery">城市图鉴</button>
+            <button class="btn ghost" id="btnHelp">玩法说明</button>
+          </div>
+          <p class="tip">建议使用电脑全屏体验 · 支持 键盘 / 鼠标 / 触屏</p>
+        </div>
+      </section>
+
+      <!-- ============ 城市地图 ============ -->
+      <section id="scr-map" class="screen hidden">
+        <div class="map-top">
+          <div class="badge">✦ 光之碎片 <b id="fragCount">0</b> / 10</div>
+          <div class="map-title">城 市 地 图</div>
+          <div class="map-actions">
+            <button class="btn tiny" id="btnGallery2">图鉴</button>
+            <button class="btn tiny" id="btnSound">🔊</button>
+            <button class="btn tiny" id="btnMusic">🎵</button>
+            <button class="btn tiny" id="btnHome">🏠</button>
+          </div>
+        </div>
+        <div id="mapArea">
+          <svg id="mapLines" viewBox="0 0 960 536" preserveAspectRatio="none"></svg>
+          <div id="mapNodes"></div>
+        </div>
+        <div id="levelCard" class="level-card hidden">
+          <div class="lc-head">
+            <span class="lc-icon" id="lcIcon">🚉</span>
+            <div>
+              <h3 id="lcName">中央车站</h3>
+              <p id="lcDesc">说明文字</p>
+            </div>
+          </div>
+          <div class="lc-goal"><b>目标：</b><span id="lcGoal"></span></div>
+          <div class="lc-stars" id="lcStars"></div>
+          <div class="lc-btns">
+            <button class="btn" id="lcPlay">进入关卡</button>
+            <button class="btn ghost" id="lcClose">关闭</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 剧情对话 ============ -->
+      <section id="scr-story" class="screen hidden">
+        <div class="story-scene" id="storyScene"></div>
+        <div class="dialog" id="dialog">
+          <div class="avatar" id="dlgAvatar">📜</div>
+          <div class="dlg-main">
+            <div class="speaker" id="dlgName">旁白</div>
+            <div class="text" id="dlgText"></div>
+          </div>
+          <div class="next" id="dlgNext">▼</div>
+        </div>
+        <button class="btn tiny skip" id="btnSkip">跳过 ▶</button>
+      </section>
+
+      <!-- ============ 游戏 HUD ============ -->
+      <div id="hud" class="hidden">
+        <div class="hud-left">
+          <button class="btn tiny" id="btnPause">⏸</button>
+          <span class="hud-name" id="hudName"></span>
+        </div>
+        <div class="hud-goal" id="hudGoal"></div>
+        <div class="hud-right"><span class="frag">✦ <b id="hudFrag">0</b></span></div>
+      </div>
+      <div id="hintBar" class="hidden"></div>
+
+      <!-- ============ 通用弹窗 ============ -->
+      <div id="modal" class="overlay hidden">
+        <div class="panel" id="modalPanel"></div>
+      </div>
+
+      <div id="toast" class="hidden"></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/story.js"></script>
+<script src="js/levels-a.js"></script>
+<script src="js/levels-b.js"></script>
+<script src="js/refined.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/scenery.js"></script>
+<script src="js/discovery.js"></script>
+<script src="js/characters.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

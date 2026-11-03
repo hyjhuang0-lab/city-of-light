@@ -1,0 +1,37 @@
+/* Garden-city edition — local artwork, quiet brass and evergreen interface. */
+html,body{background:radial-gradient(ellipse at 50% 30%,#344e50,#172e34);color:#324c48}
+#stage{border-radius:18px;box-shadow:0 25px 90px #081e3066,0 0 0 1px #dfddbb66;background:#dce4c8}
+.btn{border:1px solid #c6b98f;border-radius:9px;color:#fff7de;background:linear-gradient(135deg,#426d64,#285149);font-weight:600;font-size:15px;letter-spacing:2px;box-shadow:0 4px 12px #253e3c24,inset 0 1px #ffffff30;transition:transform .16s,filter .16s,box-shadow .16s;padding:11px 22px}
+.btn:hover{filter:brightness(1.12);box-shadow:0 6px 16px #253e3c35;transform:translateY(-2px)}
+.btn:active{transform:translateY(1px);box-shadow:0 1px 4px #253e3c30}
+.btn:focus-visible,.node:focus-visible{outline:3px solid #d6aa58;outline-offset:4px}
+.btn.ghost{background:#fbf7e9e8;color:#47635c;border-color:#d4ccb3}
+.btn.big{font-size:20px;padding:15px 36px;border-radius:9px}.btn.tiny{border-radius:7px;box-shadow:0 2px 5px #253e3c18;font-size:12px}
+.title-sky{background:url('../assets/city.svg') center/cover}.title-sky::after{inset:0;height:auto;border:0;background:linear-gradient(90deg,#f5edddeF 0%,#f5edddd9 28%,#f5eddd00 65%)}
+.cloud{display:none}
+.title-box{inset:65px auto 70px 62px;width:415px;align-items:flex-start;justify-content:center;gap:12px}
+.title-box::before{content:'A LITTLE JOURNEY · A CITY OF STORIES';font-size:10px;letter-spacing:2.5px;color:#63776c;border-top:1px solid #adad88;padding-top:15px}
+.title-box h1{font-family:'Songti SC','STSong',serif;font-size:81px;letter-spacing:12px;color:#2f554d;line-height:1.2;-webkit-text-stroke:0;text-shadow:0 3px 0 #fff8;transform:none;font-weight:600}
+.title-box h1 span{color:#a3874b}
+.title-box .sub{background:transparent;color:#6e7c68;font-size:11px;font-weight:500;letter-spacing:1px;padding:0;margin:0}
+.title-btns{width:330px;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;justify-content:start}
+#btnStart{grid-column:1 / -1}#btnContinue{grid-column:1 / -1;background:#e9dfc8;color:#465d50;border-color:#c9b990}
+.title-box .tip{font-size:10px;color:#6c7d6c;font-weight:400;letter-spacing:.4px;margin-top:15px}
+.credit-line{color:#fef8e0;background:#36554b99;border:1px solid #d1d6b044;border-radius:4px;padding:5px 10px;font-weight:400;font-size:10px}
+#scr-map{background:#dce4c8}#scr-map::before{display:none}
+#mapArea{background:url('../assets/map.svg') center/100% 100%}
+.map-top{background:#faf7e9f5;border-bottom:1px solid #c9cdb3;padding:0 22px}.map-title{font-family:'Songti SC',serif;font-size:21px;font-weight:600;color:#375a50}
+.badge{background:#ede5cd;border:1px solid #c8bc92;color:#4b6559;font-size:12px;font-weight:500}.badge b{color:#91723b}
+.node{width:64px;height:64px;margin:-32px 0 0 -32px;border:2px solid #c5b383;border-radius:18px;background:linear-gradient(#fffdf0,#e9e2cb);box-shadow:0 5px 12px #3e5f4a30;font-size:26px}
+.node .num{background:#44695c;border:1px solid #f9f4de;font-weight:500;width:23px;height:23px;left:-7px;top:-7px;font-size:11px}
+.node.locked{filter:saturate(.5);opacity:.8;background:#e0e3cf;border-color:#b3bf9f}.node.cleared{background:#f9edc7}.node.current{background:#fff8df;animation:refinedPulse 2.5s ease-in-out infinite}
+@keyframes refinedPulse{0%,100%{box-shadow:0 4px 12px #3e5f4a30,0 0 0 5px #fff5c955}50%{box-shadow:0 4px 16px #3e5f4a30,0 0 0 12px #fff5c900}}
+.node-label{position:absolute;top:68px;white-space:nowrap;color:#3c5e50;font-size:11px;letter-spacing:1px;font-weight:600;text-shadow:0 1px #ffff}
+.level-card,.panel,.dialog{background:linear-gradient(135deg,#fffdf1,#f1ebd9);border:1px solid #c7b991;box-shadow:0 14px 40px #1f3b3b35;border-radius:14px}
+.level-card{bottom:22px}.lc-goal{border:1px solid #d7cba6;background:#eee6cf}.lc-head h3,.panel h2{color:#385b51}.lc-head p{color:#7b816f}
+#hud{height:56px;background:linear-gradient(#f8f5eaf5,#f8f5ea00);padding:0 14px}.hud-name,.hud-goal,.frag{font-weight:600;border:1px solid #c5b991;box-shadow:0 3px 10px #294b4020;color:#37554b;border-radius:8px;font-size:12px}.hud-name{background:#fffbee}.hud-goal{background:#f4eccf}.frag{background:#e9d9a9}
+#hintBar{background:#294e46eb;font-size:12px;font-weight:400;border:1px solid #d9d1ad66;border-radius:8px}
+.story-scene{background:url('../assets/city.svg') center/cover!important}.story-scene::before,.story-scene::after{display:none}
+.dialog{padding-left:122px}.dialog .avatar{background:#ece4c8;border:1px solid #b9af8e;box-shadow:0 4px 15px #3e5f4a22;border-radius:15px;font-size:40px;width:82px;height:92px;top:-24px}.speaker{background:#4c7063;border:0;border-radius:5px;font-weight:500}.text{font-size:17px;font-weight:400;color:#40564d}.next{color:#9e8751}
+.gcard{border:1px solid #d7cfb6;background:#fffdf5;border-radius:9px}.panel .prize{border:1px solid #c9b987;background:#eee4c8}.overlay{background:#142f3b80}.key{border:1px solid #b6baa3}#toast{background:#2f554a;color:#fff1bf;border:1px solid #cab987;font-size:13px;font-weight:500;border-radius:8px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
