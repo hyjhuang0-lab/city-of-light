@@ -1,0 +1,51 @@
+name: Publish City of Light
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import verified game files on first publication
+        if: ${{ hashFiles('index.html') == '' }}
+        run: |
+          python3 - <<'PYCODE'
+          import urllib.request, pathlib, hashlib
+          files = {'index.html': '0ccaef03a056079bc3611ece93065bc0ce083411ecc6d1dad3cbe7b144ca401f', 'css/pixel.css': '13cbf76099d11a18fe0323ef4cdb16a764858585954abd58b184500ed526d01d', 'css/characters.css': '54e48319a04baafe3f2d81a2b7e8815563e5e561461c79645d860f7741e56eaf', 'css/refined.css': '5a2b9cab999b456c09b45df4bf23bf9e02401d86ede3de432cab7cb616d9b18e', 'css/style.css': '32698d32a620c80c08fdbe2d9318d1843f8002a7b1a919e605f29f98b4f21e13', 'js/refined.js': 'f8242bdd60f3c6b38cb01a5b1ab227a980fd3a7a3c43e719a8b80816d6eb8c2f', 'js/scenery.js': '9d959f57d739e39ff495091d2d224e7ff07224a8546a8064d6835bdcd8791e78', 'js/core.js': 'efb2b139db8e44bcd6576d96a9689746f97ba3d75a6b32ecd5dd5733f8ce59ab', 'js/story.js': '7b36211a0b30a01aa87ef56875620495651b28c7845ab0d07443b0dcc0c2cff7', 'js/discovery.js': '6f63f311c27a51027725c89ce20afed53377b2f0fb6dc647f2943f6eea411dc1', 'js/levels-a.js': '8a48a4da22c04d4d38287b005c25f2603df309cf70bf4e19be4ad40f5d5f35c1', 'js/main.js': '2a2c9156ae7a6f23ed7c862cbf1eb29855ad81530a707c51f0df37471f504181', 'js/levels-b.js': 'e7aaefca61481df142b1b38ff88a69eb87a78bd605ab1eaa8df80204bc03e87b', 'js/characters.js': '12b249dec62f7b18819f598bdc5742f09c39ee54032de91dda41e950df01a210', 'js/pixel.js': '4ce8c7ddc223e1079e979c37f7b48746f73bd049598fb224c2780664ed7d71de', 'assets/world.png': 'aebcd4a157288eac05fcffe7b9a3f49353b7e72bdc485e7280b574adfe474e2b', 'assets/map.svg': 'fe6ad3e46fce5d1cecec6a4ce9e6d101f3457ba55c0e59097ad327bf0663eb05', 'assets/city.svg': '9e2288d662e82c9fe71921810c5ade81134b60a13e4f148aa4381cdffeb7d969', 'assets/portraits.png': '3cb69f6e6598a9e8c5427ef687bd6ead38535b9daecb4b30af733e1485f354b3', 'assets/pixel-city.png': 'dc13f77d25c40e6ff90fbbbdb26ec227a1a532f93ab97c5cf50f5b913f3dbdb7', 'assets/materials.png': '5aee694abb8527042d50faab9f677edbcc14b3f02f176f9eeb5ddb1f38a5375e', 'assets/environments.png': 'a952a17c10277e27e4853f62a9079d0618dce1b2d9bb3e1931cc0795638c50fd'}
+          base = "https://city-of-light-play-hyj.hyjhuang0.chatgpt.site/"
+          for name, expected in files.items():
+              req = urllib.request.Request(base + name, headers={"User-Agent": "Mozilla/5.0"})
+              data = urllib.request.urlopen(req, timeout=90).read()
+              if hashlib.sha256(data).hexdigest() != expected:
+                  raise RuntimeError("Source checksum mismatch: " + name)
+              target = pathlib.Path(name)
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(data)
+          pathlib.Path(".nojekyll").touch()
+          PYCODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html css js assets .nojekyll
+          git commit -m "Import verified City of Light game [skip ci]"
+          git push
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy public game
+        id: deployment
+        uses: actions/deploy-pages@v4
